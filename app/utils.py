@@ -32,18 +32,18 @@ def get_captions(xml, code):
         stripped_text = re.sub(mask, '', xml).strip()
 
     else:
-        mask2 = '<.*?>'
-        clean = re.compile(mask2)
-        stripped_text = re.sub(clean, '', xml)
+        text = re.sub(r'</p>', '\n', xml)
 
-        stripped_text = ' '.join(stripped_text.split())
+        text = re.sub(r'<.*?>', '', text)
+
+        stripped_text = re.sub(r'\n\s*\n', '\n', text).strip()
+
 
     clean_text = stripped_text.replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>')
     clean_text = clean_text.replace('&quot;', '"').replace('&#39;', "'").replace('&nbsp;', ' ')
     clean_text = clean_text.replace('&copy;', '©').replace('&reg;', '®').replace('&trade;', '™')
     clean_text = clean_text.replace('&euro;', '€').replace('&pound;', '£')
 
-    #print(code)
     return clean_text
 
 

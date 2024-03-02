@@ -14,7 +14,7 @@ body {
 img {
     width: 500px;
     height: 350px;
-  }
+}
 
 .header {
     display: flex;
@@ -80,7 +80,7 @@ form input[type="text"] {
 }
 
 form button {
-    background-color: #b70000; /* red button background */
+    background-color: #b70000;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -89,11 +89,11 @@ form button {
 }
 
 form button:hover {
-    background-color: #a40000; /* darker red on hover */
+    background-color: #a40000;
 }
 
 a {
-    color: #a10000; /* red color for links */
+    color: #a10000;
     text-decoration: none;
 }
 
@@ -102,19 +102,22 @@ a:hover {
 }
 
 button {
-    background-color: #b70000; /* Red background for buttons */
-    color: white; /* White text color for buttons */
+    background-color: #b70000;
+    color: white;
     border: none;
-    padding: 15px 30px; /* Bigger padding for larger buttons */
-    margin: 10px; /* Margin around buttons */
-    border-radius: 5px; /* Rounded corners for buttons */
-    cursor: pointer; /* Cursor changes to pointer when hovering over buttons */
-    font-size: 18px; /* Larger font size for buttons */
-    width: auto; /* Auto width based on content and padding */
-    display: inline-block; /* Inline block for proper spacing */
+    padding: 15px 30px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    width: auto; 
+    display: inline-block;
 }
 
 button:hover {
-    background-color: #a40000; /* darker red on hover */
+    background-color: #a40000;
 }
 
+label {
+    color: white;
+}

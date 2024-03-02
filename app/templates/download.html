@@ -22,11 +22,11 @@
         <h2>{{ video_info.type }} Title: {{ video_info.title }}</h2>
         
         {% if video_info.length < 60 %}
-            <p>Total length of playlist: {{ video_info.length }} seconds</p>
+            <p>Total length: {{ video_info.length }} seconds</p>
         {% elif video_info.length < 3600 and video_info.length >= 60 %}
-            <p>Total length of playlist: {{ video_info.length // 60 }} minutes, {{ video_info.length % 60 }} seconds</p>
+            <p>Total length: {{ video_info.length // 60 }} minutes, {{ video_info.length % 60 }} seconds</p>
         {% elif video_info.length >= 3600 %}
-            <p>Total length of playlist: {{ video_info.length // 3600 }} hours, {{ (video_info.length % 3600)//60 }} minutes, {{ video_info.length % 60 }} seconds</p>
+            <p>Total length: {{ video_info.length // 3600 }} hours, {{ (video_info.length % 3600)//60 }} minutes, {{ video_info.length % 60 }} seconds</p>
         {% endif %}
         
         {% if video_info.type != 'Playlist' %}
