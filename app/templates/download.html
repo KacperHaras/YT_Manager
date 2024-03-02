@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Download YouTube Video</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <button onclick="location.href='/'">Home</button>
+        <h1>Download YouTube Video</h1>
+    </div>
+    <form action="/download" method="POST">
+        <input type="text" name="video_url" placeholder="Enter YouTube video link" value="{{ video_url }}" required>
+        <button type="submit_download">Submit</button>
+    </form>
+    {% if error_msg %}
+        <p style="color: red;">{{ error_msg }}</p>
+    {% endif %}
+    {% if video_info %}
+        <img src="{{ video_info.thumbnail }}" alt="Video Thumbnail" >
+        <h2>{{ video_info.type }} Title: {{ video_info.title }}</h2>
+        
+        {% if video_info.length < 60 %}
+            <p>Total length of playlist: {{ video_info.length }} seconds</p>
+        {% elif video_info.length < 3600 and video_info.length >= 60 %}
+            <p>Total length of playlist: {{ video_info.length // 60 }} minutes, {{ video_info.length % 60 }} seconds</p>
+        {% elif video_info.length >= 3600 %}
+            <p>Total length of playlist: {{ video_info.length // 3600 }} hours, {{ (video_info.length % 3600)//60 }} minutes, {{ video_info.length % 60 }} seconds</p>
+        {% endif %}
+        
+        {% if video_info.type != 'Playlist' %}
+        <form action="/download_video" method="post">
+            <input type="hidden" name="video_url" value="{{ video_url }}">
+            <label for="download_type">Download Type:</label>
+            <select name="download_type" id="download_type" onchange="toggleResolutionOptions(this.value)">
+                <option value="video">Video</option>
+                <option value="audio">Audio</option>
+            </select>
+            <br>
+            <div id="resolution-options" style="display: none;">
+                <label for="resolution">Resolution:</label>
+                <select name="resolution" id="resolution" onchange="showWarning(this.value)">
+                    {% for resolution in video_info.resolutions %}
+                    <option value="{{ resolution }}">{{ resolution }}</option>
+                    {% endfor %}
+                </select>
+                <p id="warning" style="display: none; color: red;">Warning: High video resolution may lead to a longer downloading time.</p>
+            </div>
+            <button type="submit">Download</button>
+        </form>
+        {% elif video_info.type == 'Playlist' %}
+            <form action="/download_playlist" method="post">
+                <input type="hidden" name="video_url" value="{{ video_url }}">
+                <label for="download_type">Download Type:</label>
+                <select name="download_type" id="download_type" onchange="toggleResolutionOptions(this.value)">
+                    <option value="video">Video</option>
+                    <option value="audio">Audio</option>
+                </select>
+                <br>
+                <button type="submit" id="download-button">Download</button>
+        </form>
+        {% endif %}
+            <br>
+            
+    {% endif %}
+
+    <script>
+        function toggleResolutionOptions(downloadType) {
+            var resolutionOptions = document.getElementById('resolution-options');
+            var downloadButton = document.getElementById('download-button');
+            if (downloadType === 'audio') {
+                resolutionOptions.style.display = 'none';
+                downloadButton.style.display = 'inline';
+            } else {
+                resolutionOptions.style.display = 'block';
+                downloadButton.style.display = 'inline';
+            }
+        }
+
+        function showWarning(resolution) {
+            var warningText = document.getElementById('warning');
+            if (resolution === '1080p') {
+                warningText.style.display = 'block';
+            } else {
+                warningText.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var downloadTypeSelect = document.getElementById('download_type');
+            toggleResolutionOptions(downloadTypeSelect.value);
+        });
+    </script>
+</body>
+</html>

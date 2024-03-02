@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Information</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <button onclick="location.href='/'">Home</button>
+        <h1>YouTube Video Info</h1>
+    </div>
+    <form action="/get_info" method="POST">
+        <input type="text" name="video_url" placeholder="Enter YouTube video link" value="{{ video_url }}" required>
+        <button type="submit_info">Submit</button>
+    </form>
+    {% if video_info %}
+        <h1>{{ video_info.title }}</h1>
+        <img src="{{ video_info.thumbnail }}" alt="Thumbnail">
+        <p>Channel: {{ video_info.owner }}</p>
+        <p>Type: {{ video_info.type }}</p>
+        {% if video_info.type != 'Playlist' %}
+            <p>Views: {{ video_info.views }}</p>
+            {% if video_info.length < 60 %}
+                <p>Length of video: {{ video_info.length }} seconds</p>
+            {% elif video_info.length < 3600 and video_info.length >= 60 %}
+                <p>Length of video: {{ video_info.length // 60 }} minutes, {{ video_info.length % 60 }} seconds</p>
+            {% elif video_info.length >= 3600 %}
+                <p>Length of video: {{ video_info.length // 3600 }} hours, {{ (video_info.length % 3600)//60 }} minutes, {{ video_info.length % 60 }} seconds</p>
+            {% endif %}
+
+            <a href="/" id="DescriptionLink" onClick="op1('hidden1'); return false;">Click to see video description</a>
+            <form action="/download_desc_links" method="POST">
+                <input type="hidden" name="video_url" value="{{ video_url }}">
+                <button type="submit">Download Description Links</button>
+            </form>
+            <div id="hidden1" style="display:none">
+                <pre>{{ video_info.description }}</pre>
+            </div>
+
+        {% elif video_info.type == 'Playlist' %}
+            <p>Number of videos in playlist: {{ video_info.nb_videos }}</p>
+            {% if video_info.length < 60 %}
+            <p>Total length of playlist: {{ video_info.length }} seconds</p>
+            {% elif video_info.length < 3600 and video_info.length >= 60 %}
+                <p>Total length of playlist: {{ video_info.length // 60 }} minutes, {{ video_info.length % 60 }} seconds</p>
+            {% elif video_info.length >= 3600 %}
+                <p>Total length of playlist: {{ video_info.length // 3600 }} hours, {{ (video_info.length % 3600)//60 }} minutes, {{ video_info.length % 60 }} seconds</p>
+            {% endif %}
+            <p>Average length of video in playlist: {{ video_info.length//video_info.nb_videos // 60 }} minutes, {{ video_info.length//video_info.nb_videos % 60 }} seconds</p>
+        {% endif %}
+    
+        {% if video_info.captions %}
+        <a href="/" id="CaptionsLink" onClick="op2('hidden2'); return false;">Click to see video captions</a>
+        <form action="/download_captions" method="POST">
+            <input type="hidden" name="video_url" value="{{ video_url }}">
+            <button type="submit">Download Captions</button>
+        </form></br>
+        
+            <div id="hidden2" style="display:none">
+                <pre>{{ video_info.captions }}</pre>
+            </div>
+        {% else %}
+        <from>
+            <p>No captions available</p>
+            <br>
+        </from>
+        {% endif %}
+        
+        
+
+    {% elif error_msg %}
+        <p>{{ error_msg }}</p>
+    {% endif %}
+
+
+    <script>
+        function op1(obj) {
+            var x = document.getElementById(obj);
+            var link = document.getElementById("DescriptionLink");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                link.innerHTML = "Hide description"; // Change text to Hide
+            } else {
+                x.style.display = "none";
+                link.innerHTML = "Click to see video description"; // Change back to original text
+            }
+        }
+        function down_desc(){}
+        function op2(obj) {
+            var x = document.getElementById(obj);
+            var link = document.getElementById("CaptionsLink");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                link.innerHTML = "Hide captions"; // Change text to Hide
+            } else {
+                x.style.display = "none";
+                link.innerHTML = "Click to see video captions"; // Change back to original text
+            }
+        }
+    </script>
+        
+</body>
+</html>

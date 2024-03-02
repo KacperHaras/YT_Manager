@@ -1,0 +1,120 @@
+html {
+    height: 100%;
+    background-color: #333;
+}
+
+body {
+    background-color: #333;
+    font-family: Arial, sans-serif;
+    color: white;
+    background-color: #333;
+    margin-left: 20px;
+}
+
+img {
+    width: 500px;
+    height: 350px;
+  }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+}
+
+.header button {
+    background-color: #b70000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.header button:hover {
+    background-color: #a40000;
+}
+
+.header h1 {
+    color: #ff0000;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+#hidden1 pre,
+#hidden2 pre {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+div {
+    color: black;
+}
+
+div.description{
+    color: white;
+    text-align: left;
+}
+
+h2 {
+    color: #ff0000;
+}
+
+form {
+    color: white;
+    text-align: left;
+}
+
+form input[type="text"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #b70000; /* red button background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #a40000; /* darker red on hover */
+}
+
+a {
+    color: #a10000; /* red color for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #b70000; /* Red background for buttons */
+    color: white; /* White text color for buttons */
+    border: none;
+    padding: 15px 30px; /* Bigger padding for larger buttons */
+    margin: 10px; /* Margin around buttons */
+    border-radius: 5px; /* Rounded corners for buttons */
+    cursor: pointer; /* Cursor changes to pointer when hovering over buttons */
+    font-size: 18px; /* Larger font size for buttons */
+    width: auto; /* Auto width based on content and padding */
+    display: inline-block; /* Inline block for proper spacing */
+}
+
+button:hover {
+    background-color: #a40000; /* darker red on hover */
+}
+
