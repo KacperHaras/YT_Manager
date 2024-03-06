@@ -2,8 +2,10 @@
 
 ## Introduction
 
-YT Manager is a comprehensive tool designed for downloading YouTube videos, audio, playlists, and for fetching important video information such as captions and video description links. It leverages the PyTube library to facilitate these downloads and information retrieval, offering a user-friendly interface and efficient processing.
-
+YT Manager is a comprehensive tool designed for downloading YouTube videos, audio, playlists, and for fetching important video information such as captions and video description links. It leverages the PyTube library to facilitate these downloads and information retrieval, offering a user-friendly interface and efficient processing.                                     | 
+At the very bottom of the document I explain what the individual sections of the application look like.     |
+                                                                                                           \|/                
+                                                                                                            '
 ## Features
 
 * **Video Download**: Download videos in various resolutions.
@@ -50,3 +52,7 @@ To set up and run your app, you will need to install Python, Flask, PyTube and a
 ## Acknowledgments
 
 I would like to express my gratitude to the PyTube documentation for their invaluable assistance during the development of this app. The guidance provided by their official documentation and API reference, found at https://pytube.io/en/latest/ and https://pytube.io/en/latest/api.html, was instrumental in leveraging the PyTube library effectively. For anyone interested in exploring the capabilities of the PyTube library further, these resources come highly recommended for their thoroughness and clarity.
+
+
+## App Preview
+
