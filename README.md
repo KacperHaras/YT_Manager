@@ -1,4 +1,3 @@
-![d1](https://github.com/KacperHaras/YT_Manager/assets/96292573/eb9f12db-e8e0-45d2-9e62-c5565b2a3519)# YT Manager
 
 ## Introduction
 
